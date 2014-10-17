@@ -9,17 +9,6 @@ $('#create-survey').on("click", function(e) {
 	});
 });
 
-// $('#submit-survey').on("click", function(e) {
-// 	e.preventDefault();
-// 	$.ajax({
-// 		url: '/view/survey/' + this.,
-// 		type: 'GET'
-// 	}).done(function(){
-// 		$('.survey').css("display","block")
-// 		$('#display-table').css("display","none")
-// 	});
-// });
-
 $('#create-survey-button').on("click", function(e) {
 	e.preventDefault();
 	$.ajax({
@@ -64,18 +53,3 @@ $('.edit-container').delegate(".add-question", "click", function(e) {
 $('.edit-container').delegate("#finish-survey-button", "click", function(e) {
 	window.location.href='/view/survey/' + this.attr('data-survey_id')
 });
-
-// 	// e.preventDefault();
-// 	// $.ajax({
-// 	// 	url: '/view/survey/' + this.data.survey_id
-// 	// }).done(function(data){
-// 	// 	console.log(data)
-// 	// 	$('#display-survey').css("display","block")
-// 	// 	// var choiceHtml = "<div class='choice'><form class='choice-form-class' action='/choice/new' method='POST'><input type='hidden' name='question_id' value='" + data.question_id + "'><label for='content'>Option: </label><input type='text' name='content'><input type='submit' class='add-choice' value='+ Add another choice'></form></div>"
-// 	// 	// $('.question').append(choiceHtml)
-// 	// }).fail(function(){
-// 	// 	console.log("fail")
-// 	// }).always(function() {
-// 	// 	console.log("always")
-// 	// });
-// });
