@@ -36,7 +36,7 @@ post '/choice/new' do
 	content_type :json
 	choice = Choice.create(params)
 	Question.find(params[:question_id]).choices << choice
-	return {question_id: question.id}.to_json
+	return {question_id: choice.question_id}.to_json
 end
 
 

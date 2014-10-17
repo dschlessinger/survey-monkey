@@ -41,6 +41,7 @@ $('.edit-container').delegate(".add-question", "click", function(e) {
 		data: $('.form-class').last().serialize(),
 		dataType: 'json'
 	}).done(function(data){
+		$('.add-question').last().css("display","none")
 		var choiceHtml = "<div class='choice'><form class='choice-form-class' action='/choice/new' method='POST'><input type='hidden' name='question_id' value='" + data.question_id + "'><label for='content'>Option: </label><input type='text' name='content'><input type='submit' class='add-choice' value='+ Add another choice'></form></div>"
 		$('.question').append(choiceHtml)
 	}).fail(function(){
@@ -50,6 +51,24 @@ $('.edit-container').delegate(".add-question", "click", function(e) {
 	});
 });
 
-$('.edit-container').delegate("#finish-survey-button", "click", function(e) {
+$('.edit-container').delegate(".add-choice", "click", function(e) {
+	e.preventDefault();
+	$.ajax({
+		url: '/choice/new',
+		type: 'POST',
+		data: $('.choice-form-class').last().serialize(),
+		dataType: 'json'
+	}).done(function(data){
+		$('.add-choice').last().css("display","none")
+		var choiceHtml = "<div class='choice'><form class='choice-form-class' action='/choice/new' method='POST'><input type='hidden' name='question_id' value='" + data.question_id + "'><label for='content'>Option: </label><input type='text' name='content'><input type='submit' class='add-choice' value='+ Add another choice'></form></div>"
+		$('.question').append(choiceHtml)
+	}).fail(function(){
+		console.log("fail")
+	}).always(function() {
+		console.log("always")
+	});
+});
+
+$(document).delegate("#finish-survey-button", "click", function(e) {
 	window.location.href='/view/survey/' + this.attr('data-survey_id')
 });
