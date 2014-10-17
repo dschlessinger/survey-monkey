@@ -1,0 +1,16 @@
+<table id="display-table" border="1" cellpadding="10px">
+  <tr style="font-weight:bold">
+    <td>Title</td>
+    <td>Author</td>
+    <td>Updated</td>
+    <!-- <td>DELETE</td> -->
+  </tr>
+  <% @surveys.reverse.each do |survey| %>
+  <tr>
+    <td><a href="survey/<%= survey.id %>"><%= survey.title.capitalize %></a></td>
+    <td>@<%= survey.author_username %></td>
+    <td><%= survey.updated_at.to_date %></td>
+    <!-- <td class="delete"><a href="/survey/<%= survey.id %>/delete">X</a></td> -->
+  </tr>
+  <% end %>
+</table>

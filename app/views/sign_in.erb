@@ -1,0 +1,13 @@
+<div id="inner-container">
+  <h1>Sign In</h1>
+
+  <form id="sign-in" method="post" action="/sessions">
+    <label class="label" for="username">Username: </label>
+    <input id="username" type="text" name="username" value="<%= @username %>"><br>
+
+    <label class="label" for="password">Password: </label>
+    <input id="password" type="password" name="password"><br>
+
+    <div class="submit"><input type="submit" value="Sign In" id='sign-in-button'></div>
+  </form>
+</div>

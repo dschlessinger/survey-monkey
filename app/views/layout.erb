@@ -6,7 +6,26 @@
   <title>Survey Godzilla</title>
 </head>
 <body>
-  <%= yield %>
+	<div class="container">
+		<nav>
+		  <ul>
+		    <% if logged_in? %>
+		      <li>
+		        <form id="sign-out" action="/sessions/<%= current_user.id %>" method="post">
+		          <input name="_method" type="hidden" value="delete" />
+		          <input type="submit" value="Sign Out">
+		        </form>
+		      </li>
+		    <% else %>
+		      <li><a href="/sessions/new">Sign In</a></li>
+		      <li><a href="/users/new">Sign Up</a></li>
+		    <% end %>
+		  </ul>
+		</nav>
+
+	  <%= yield %>
+	  <%= erb :_footer %>
+  </div>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="/js/application.js"></script>
 </body>

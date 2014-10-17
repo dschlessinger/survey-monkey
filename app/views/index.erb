@@ -1,25 +1,9 @@
-<div class="container">
+<% if @current_user %>
   <h1>Survey GODZILLA</h1>
-  <p><a href="/note/new">+ Create new survey</a></p>
-  <table border="1" style="width:100%" cellpadding="10px">
-    <tr style="font-weight:bold">
-      <td>Title</td>
-      <td>Author</td>
-      <% if params[:updated_at] == 'asc' %>
-        <td>Updated <a href="/?updated_at=desc">SORT BY NEWEST</a></td>
-      <% else %>
-        <td>Updated <a href="/?updated_at=asc">SORT BY OLDEST</a></td>
-      <% end %>
-      <!-- <td>DELETE</td> -->
-    </tr>
-    <% @surveys.reverse.each do |survey| %>
-    <tr>
-      <td><a href="survey/<%= survey.id %>"><%= survey.title.capitalize %></a></td>
-      <td>@<%= survey.author_username %></td>
-      <td><%= survey.updated_at.to_date %></td>
-      <!-- <td class="delete"><a href="/survey/<%= survey.id %>/delete">X</a></td> -->
-    </tr>
-    <% end %>
-  </table>
-  <%= erb :_footer %>
-</div>
+  <p><a id="create-survey">+ Create new survey</a></p>
+  <%= erb :_new_survey %>
+  <div class="edit-container"></div>
+  <%= erb :_display_table %>
+<% else %>
+  <%= erb :sign_in %>
+<% end %>
