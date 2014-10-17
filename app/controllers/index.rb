@@ -13,6 +13,11 @@ get '/survey/new' do
 	200
 end
 
+get '/view/survey/:id' do
+	@survey = Survey.find(params[:id])
+	erb :_display_survey
+end
+
 post '/survey/new' do
 	content_type :json
 	survey = Survey.create(params)
@@ -24,9 +29,16 @@ post '/question/new' do
 	content_type :json
 	question = Question.create(params)
 	Survey.find(params[:survey_id]).questions << question
-	# 200
 	return {question_id: question.id}.to_json
 end
+
+post '/choice/new' do
+	content_type :json
+	choice = Choice.create(params)
+	Question.find(params[:question_id]).choices << choice
+	return {question_id: question.id}.to_json
+end
+
 
 # ------------------------------
 

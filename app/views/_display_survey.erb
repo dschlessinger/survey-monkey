@@ -1,0 +1,13 @@
+<p class="breadcrumb"><a href="/"><<< Back to index</a></p>
+<div id="display-survey">
+	<h1>Survey Title: <%= @survey.title %></h1>
+	<h3>By <a>@<%= @survey.author_username %></a></h3>
+	<form>
+		<%@survey.questions.each_with_index do |question, index|%>
+			<h3>Question <%="#{index + 1}: #{question.text}"%></h3>
+			<%question.choices.each_with_index do |choice, i|%>
+				<input type="radio" name="<%=question.text%>"><%=choice.content%><br>
+			<%end%>
+		<%end%>
+	</form>
+</div>
