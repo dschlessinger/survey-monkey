@@ -39,7 +39,10 @@ post '/choice/new' do
 	return {question_id: choice.question_id}.to_json
 end
 
-
+post '/anotherquestion' do
+	content_type :json
+	return {question_id: (params[:question_id] + 1)}.to_json
+end
 # ------------------------------
 
 get '/sessions/new' do

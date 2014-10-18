@@ -41,9 +41,32 @@ $('.edit-container').delegate(".add-question", "click", function(e) {
 		data: $('.form-class').last().serialize(),
 		dataType: 'json'
 	}).done(function(data){
+		var anotherQuestionHtml = "<input type='submit' class='add-another-question' value='+ Add another question'>"
 		$('.add-question').last().css("display","none")
 		var choiceHtml = "<div class='choice'><form class='choice-form-class' action='/choice/new' method='POST'><input type='hidden' name='question_id' value='" + data.question_id + "'><label for='content'>Option: </label><input type='text' name='content'><input type='submit' class='add-choice' value='+ Add another choice'></form></div>"
 		$('.question').append(choiceHtml)
+		$('.question').after(anotherQuestionHtml)
+	}).fail(function(){
+		console.log("fail")
+	}).always(function() {
+		console.log("always")
+	});
+});
+
+$('.edit-container').delegate(".add-another-question", "click", function(e) {
+	e.preventDefault();
+	$.ajax({
+		url: '/anotherquestion',
+		type: 'POST',
+		data: $('.choice-form-class').last().serialize(),
+		dataType: 'json'
+	}).done(function(data){
+		$('.add-another-question').last().css("display","none")
+		var anotherQuestionHtml = "<input type='submit' class='add-another-question' value='+ Add another question'>"
+		$('.add-question').last().css("display","none")
+		var choiceHtml = "<div class='choice'><form class='choice-form-class' action='/choice/new' method='POST'><input type='hidden' name='question_id' value='" + data.question_id + "'><label for='content'>Option: </label><input type='text' name='content'><input type='submit' class='add-choice' value='+ Add another choice'></form></div>"
+		$('.question').append(choiceHtml)
+		$('.question').after(anotherQuestionHtml)
 	}).fail(function(){
 		console.log("fail")
 	}).always(function() {
